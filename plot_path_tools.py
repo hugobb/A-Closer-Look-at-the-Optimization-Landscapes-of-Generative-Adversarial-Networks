@@ -115,7 +115,7 @@ def compute_path_stats(gen, dis, checkpoint_1, checkpoint_2, dataloader, config,
             ################# Compute Loss #########################
             # TODO: Needs to be changed to be able to handle different kind of loss
             x_gen = gen(z)
-            dis_loss, _, _ = model_loss_dis(x_true, x_gen.detach(), dis, device)
+            dis_loss, _, _ = model_loss_dis(x_true, x_gen, dis, device)
             gen_loss, _ = model_loss_gen(x_gen, dis, device)
             if config.model == 'wgan_gp':
                 penalty = dis.get_penalty(x_true.detach(), x_gen.detach()).mean()
